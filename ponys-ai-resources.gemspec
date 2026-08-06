@@ -1,7 +1,7 @@
 
 Gem::Specification.new do |spec|
   spec.name = "ponys-ai-resources"
-  spec.version = "0.1.0"
+  spec.version = "0.2.0"
   spec.summary = "Official Ponys.ai public resource helpers"
   spec.description = "Resolve product URLs and multilingual public feeds for publisher integrations."
   spec.authors = ["Ponys.ai"]

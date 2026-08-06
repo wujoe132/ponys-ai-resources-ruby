@@ -3,7 +3,7 @@
 require "uri"
 
 module PonysAIResources
-  VERSION = "0.1.0"
+  VERSION = "0.2.0"
   PRODUCTS = {
     homepage: "https://ponys.ai/",
     discover: "https://ponys.ai/discover",
@@ -25,6 +25,20 @@ module PonysAIResources
     raise ArgumentError, "format must be json or xml" unless %w[json xml].include?(format)
 
     "https://feeds.ponys.ai/feeds/#{locale}.#{format}"
+  end
+
+  def self.character_feed_url(locale = "en")
+    raise ArgumentError, "unsupported locale" unless LOCALES.include?(locale)
+
+    "https://feeds.ponys.ai/characters/#{locale}.json"
+  end
+
+  def self.widget_manifest_url
+    "https://feeds.ponys.ai/api/benchmark-widget.json"
+  end
+
+  def self.open_data_catalog_url
+    "https://feeds.ponys.ai/open-data/catalog.json"
   end
 
   def self.creator_url(product = :discover, publisher:, locale: "en")
