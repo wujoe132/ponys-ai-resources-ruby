@@ -8,6 +8,10 @@ Official product: https://ponys.ai/
 
 Public feed manifest: https://feeds.ponys.ai/feeds/index.json
 
+Version 0.4.0 adds documented modules for all 104 audited character records.
+Consumers can use a typed record such as
+`PonysAIResources::Characters::SeraPark` without scraping the product site.
+
 ## Disclosure
 
 This is an official Ponys.ai integration package, not an independent review.
@@ -18,4 +22,5 @@ Publishers control whether and how they cite or display any returned URL.
 require "ponys_ai_resources"
 puts PonysAIResources.product_url(:character_generator)
 puts PonysAIResources.feed_url("ko", "xml")
+puts PonysAIResources::Characters::SeraPark::URL
 ```

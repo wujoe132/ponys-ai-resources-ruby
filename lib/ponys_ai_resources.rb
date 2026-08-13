@@ -1,9 +1,11 @@
 # frozen_string_literal: true
 
+require "json"
 require "uri"
+require_relative "ponys_ai_resources/characters"
 
 module PonysAIResources
-  VERSION = "0.2.0"
+  VERSION = "0.4.0"
   PRODUCTS = {
     homepage: "https://ponys.ai/",
     discover: "https://ponys.ai/discover",
@@ -15,6 +17,16 @@ module PonysAIResources
     ai_boyfriend: "https://ponys.ai/ai-boyfriend"
   }.freeze
   LOCALES = %w[en ja ko zh-tw zh-cn es pt-br].freeze
+  CHARACTERS = JSON.parse(
+    File.read(File.join(__dir__, "ponys_ai_resources", "characters.json"))
+  ).freeze
+
+  def self.character_url(slug)
+    record = CHARACTERS.find { |character| character["slug"] == slug.to_s.downcase }
+    raise ArgumentError, "unknown character: #{slug}" unless record
+
+    record.fetch("url")
+  end
 
   def self.product_url(name = :homepage)
     PRODUCTS.fetch(name.to_sym)
